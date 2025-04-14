@@ -1,49 +1,17 @@
 # Trin Assistant
 
-A voice-controlled personal assistant with a modern, feminine aesthetic. Trin Assistant can help you with various tasks including system control, media playback, weather information, news updates, and file management.
-
-## Features
-
-- 🎤 Voice command recognition
-- 💖 Modern pink-themed GUI
-- 🎵 Spotify integration
-- 🌤️ Weather information
-- 📰 News updates
-- 📂 File management
-- 🔒 Secure configuration management
-- 🚀 Easy Windows integration
-
-## Directory Structure
-
-```
-trin-assistant/
-├── src/                    # Source code
-│   ├── trin_assistant.py   # Main assistant implementation
-│   ├── trin_gui.py         # GUI implementation
-│   ├── launch_trin.pyw     # Windows launcher
-│   ├── create_shortcut.py  # Shortcut creator
-│   └── config_manager.py   # Secure configuration manager
-├── docs/                   # Documentation
-│   ├── README.md          # This file
-│   └── COMMANDS.md        # Command reference
-├── config/                 # Configuration files
-│   └── spotify_config.json # Spotify API configuration
-├── models/                 # AI models
-│   └── vosk-model-small-en-us-0.15/ # Speech recognition model
-└── scripts/               # Utility scripts
-    └── start_trin.bat     # Batch file for starting the assistant
-```
+A modern, feminine AI assistant with voice recognition and system control capabilities. Trin Assistant features a beautiful pink-themed interface and powerful functionality for managing your computer and media.
 
 ## Installation
 
-### Prerequisites
+### Method 1: Using the Installer (Recommended)
+1. Contact me on Discord at `afroteddy` to get the latest installer
+2. Run the installer and follow the on-screen instructions
+3. Choose whether to create desktop and startup shortcuts
+4. The installer will automatically set up all required dependencies and configurations
 
-- Windows 10 or higher
-- Python 3.10 or higher
-- Microphone
-- Internet connection
-
-### Setup
+### Method 2: Manual Installation (Alternative)
+If you prefer manual installation or want to contribute to development:
 
 1. Clone the repository:
 ```bash
@@ -51,155 +19,91 @@ git clone https://github.com/AfroTeddy12/trin-assistant.git
 cd trin-assistant
 ```
 
-2. Install dependencies:
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On Linux/Mac:
+source venv/bin/activate
+```
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
-pip install cryptography pywin32 winshell
 ```
 
-3. Download required models:
+4. Download the Vosk model:
 ```bash
-# Download Vosk model
-python -m vosk_model_downloader vosk-model-small-en-us-0.15
+# Create models directory if it doesn't exist
+mkdir models
+# Download and extract the model
+# Windows:
+curl -L https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip -o vosk-model-small-en-us-0.15.zip
+powershell Expand-Archive vosk-model-small-en-us-0.15.zip -DestinationPath models
+# Linux/Mac:
+wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+unzip vosk-model-small-en-us-0.15.zip -d models
 ```
 
-4. Create shortcuts (run once):
-```bash
-python src/create_shortcut.py
-```
+5. Configure Spotify (optional):
+   - Copy `config/spotify_config.json.example` to `config/spotify_config.json`
+   - Add your Spotify API credentials
 
-## Configuration
+## Features
 
-### Secure Configuration System
-
-Trin Assistant uses a secure configuration system to store sensitive data:
-
-- API keys and credentials are encrypted using Fernet encryption
-- Configuration is stored in your home directory under `.trin_assistant`
-- Automatic key generation and management
-- Secure storage of Spotify and weather API credentials
-
-### Initial Setup
-
-1. Run the assistant for the first time
-2. Enter your API credentials when prompted:
-   - Spotify API credentials
-   - Weather API key
-3. Credentials are automatically encrypted and stored securely
+- Voice command recognition
+- System monitoring and control
+- Spotify integration
+- Weather information
+- News updates
+- Web search
+- File management
+- Application control
+- Beautiful pink-themed GUI
 
 ## Usage
 
-### Starting the Assistant
+1. Launch Trin Assistant using the desktop shortcut or from the Start menu
+2. Click "Start Assistant" to begin
+3. Use voice commands to interact with the assistant
+4. Common commands:
+   - "Hello Trin" - Wake up the assistant
+   - "What's the weather?" - Get weather information
+   - "Play Spotify" - Control Spotify playback
+   - "System status" - Check system information
+   - "Goodbye" - Put the assistant to sleep
 
-You can start Trin Assistant in several ways:
+## Directory Structure
 
-1. Double-click the desktop shortcut
-2. Run `python src/launch_trin.pyw`
-3. The assistant starts automatically with Windows
-
-### Voice Commands
-
-Trin Assistant responds to various voice commands:
-
-#### Basic Commands
-- "Hello Trin" - Wake up the assistant
-- "Goodbye" - Put the assistant to sleep
-- "Exit" - Close the assistant
-
-#### System Information
-- "What's the system status" - Get system information
-- "What time is it" - Get current time
-- "What day is it" - Get current day
-- "What's the date" - Get current date
-
-#### Weather Information
-- "What's the weather" - Get weather for current location
-- "What's the weather in [city], [country]" - Get weather for specific location
-
-#### News Updates
-- "Get me the news" - Get general news
-- "Get me tech news" - Get technology news
-- "Get me business news" - Get business news
-- "Get me sports news" - Get sports news
-
-#### Web Search
-- "Search for [query]" - Perform a web search
-
-#### File Management
-- "Organize my files" - Organize files in Downloads folder
-- "Organize files in [directory]" - Organize files in specified directory
-
-#### Application Control
-- "Open [application]" - Open an application
-- "Close [application]" - Close an application
-- "Kill [application]" - Force close an application
-
-#### Spotify Control
-- "Open Spotify" - Launch Spotify
-- "Play Spotify" - Start playback
-- "Pause Spotify" - Pause playback
-- "Next track" - Skip to next track
-- "Previous track" - Go to previous track
-- "Play playlist [name]" - Play specific playlist
-
-#### System Control
-- "Shutdown computer" - Shutdown the system
-- "Restart computer" - Restart the system
-- "Cancel shutdown" - Cancel pending shutdown
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Microphone Not Working**
-   - Check if microphone is properly connected
-   - Ensure microphone permissions are granted
-   - Try selecting a different microphone in system settings
-
-2. **Speech Recognition Issues**
-   - Check internet connection
-   - Ensure clear audio input
-   - Try speaking closer to the microphone
-
-3. **Spotify Integration**
-   - Verify Spotify credentials in secure config
-   - Ensure Spotify is installed and running
-   - Check internet connection
-
-4. **Weather Information**
-   - Verify weather API key in secure config
-   - Check internet connection
-   - Ensure location services are enabled
-
-### Debug Mode
-
-Run the assistant with debug mode for detailed information:
-```bash
-python src/trin_assistant.py --debug
+```
+trin-assistant/
+├── src/                    # Source code
+│   ├── trin_assistant.py   # Main assistant logic
+│   ├── trin_gui.py         # GUI implementation
+│   ├── launch_trin.pyw     # Windows launcher
+│   └── create_shortcut.py  # Shortcut creator
+├── docs/                   # Documentation
+│   ├── README.md
+│   └── COMMANDS.md
+├── config/                 # Configuration files
+│   └── spotify_config.json
+├── models/                 # AI models
+│   └── vosk-model-small-en-us-0.15
+└── scripts/                # Utility scripts
+    └── start_trin.bat
 ```
 
-## Development
+## Requirements
 
-### Setting Up Development Environment
+- Python 3.8 or higher
+- Windows 10 or higher
+- Microphone
+- Internet connection (for some features)
 
-1. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-```
+## Dependencies
 
-2. Install development dependencies:
-```bash
-pip install -r requirements.txt
-pip install cryptography pywin32 winshell
-```
-
-### Running Tests
-
-```bash
-python -m unittest discover tests
-```
+See `requirements.txt` for a complete list of dependencies.
 
 ## Contributing
 
@@ -208,6 +112,12 @@ python -m unittest discover tests
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## Support
+
+For support or to get the installer:
+- Discord: `afroteddy`
+- GitHub Issues: [Create an issue](https://github.com/AfroTeddy12/trin-assistant/issues)
 
 ## License
 
